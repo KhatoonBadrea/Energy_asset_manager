@@ -1,0 +1,39 @@
+.project-details {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+
+.project-details__back {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.project-details__back:hover {
+  color: var(--color-accent);
+}
+
+.project-details__header {
+  margin-bottom: 28px;
+}
+
+.project-details__title {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.project-details__description {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.project-details__empty {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  text-align: center;
+  padding: 40px 0;
+}

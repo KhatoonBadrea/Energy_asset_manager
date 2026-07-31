@@ -2,6 +2,7 @@
 
 namespace App\Services\Task;
 
+use App\Enums\TaskStatus;
 use App\Models\Project;
 use App\Models\Task;
 use App\Support\ServiceResult;
@@ -30,8 +31,8 @@ class TaskService
      */
     public function create(Project $project, array $data): ServiceResult
     {
+        $data['status'] ??= TaskStatus::Todo;
         $task = $project->tasks()->create($data);
-
         return ServiceResult::success(
             data: $task,
             message: 'Task created successfully.',

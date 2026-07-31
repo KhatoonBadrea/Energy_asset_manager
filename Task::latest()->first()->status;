@@ -1,0 +1,139 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#8512
+    [34mall[39m: [
+      [34;4mApp\Models\Task[39;24m {#8510
+        [34mid[39m: [35m1[39m,
+        [34mtitle[39m: [32m"[39m[32mConsectetur nostrum commodi porro sed.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8511
+        [34mid[39m: [35m2[39m,
+        [34mtitle[39m: [32m"[39m[32mEst et et repellendus.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mdone[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8508
+        [34mid[39m: [35m3[39m,
+        [34mtitle[39m: [32m"[39m[32mDeleniti est necessitatibus saepe nesciunt.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mdone[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8507
+        [34mid[39m: [35m4[39m,
+        [34mtitle[39m: [32m"[39m[32mDeserunt labore sit unde laborum.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8506
+        [34mid[39m: [35m5[39m,
+        [34mtitle[39m: [32m"[39m[32mHarum dolorem explicabo minus dolorem modi.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8505
+        [34mid[39m: [35m6[39m,
+        [34mtitle[39m: [32m"[39m[32mPerspiciatis dolores error quasi omnis sed.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8504
+        [34mid[39m: [35m7[39m,
+        [34mtitle[39m: [32m"[39m[32mCulpa esse est non qui optio.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8503
+        [34mid[39m: [35m8[39m,
+        [34mtitle[39m: [32m"[39m[32mDolores quod aperiam id hic.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8502
+        [34mid[39m: [35m9[39m,
+        [34mtitle[39m: [32m"[39m[32mDolorum est et autem doloremque.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8501
+        [34mid[39m: [35m10[39m,
+        [34mtitle[39m: [32m"[39m[32mNam non consequatur et excepturi.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mdone[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8500
+        [34mid[39m: [35m11[39m,
+        [34mtitle[39m: [32m"[39m[32mOmnis porro officia tenetur cupiditate.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mdone[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8499
+        [34mid[39m: [35m12[39m,
+        [34mtitle[39m: [32m"[39m[32mSequi nihil inventore modi aliquid earum.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8498
+        [34mid[39m: [35m13[39m,
+        [34mtitle[39m: [32m"[39m[32mIusto quisquam ducimus porro voluptatem.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8497
+        [34mid[39m: [35m14[39m,
+        [34mtitle[39m: [32m"[39m[32mOdit alias dolore.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8496
+        [34mid[39m: [35m15[39m,
+        [34mtitle[39m: [32m"[39m[32mVoluptas quia eveniet soluta nobis.[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8495
+        [34mid[39m: [35m18[39m,
+        [34mtitle[39m: [32m"[39m[32mNew Task[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8494
+        [34mid[39m: [35m19[39m,
+        [34mtitle[39m: [32m"[39m[32mNew Task[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8493
+        [34mid[39m: [35m20[39m,
+        [34mtitle[39m: [32m"[39m[32mNew Task[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8492
+        [34mid[39m: [35m17[39m,
+        [34mtitle[39m: [32m"[39m[32mUpdated Task[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32min_progress[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8491
+        [34mid[39m: [35m21[39m,
+        [34mtitle[39m: [32m"[39m[32mNew Task[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8490
+        [34mid[39m: [35m22[39m,
+        [34mtitle[39m: [32m"[39m[32mNew Task[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8489
+        [34mid[39m: [35m24[39m,
+        [34mtitle[39m: [32m"[39m[32mtest[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8488
+        [34mid[39m: [35m25[39m,
+        [34mtitle[39m: [32m"[39m[32mtest[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8487
+        [34mid[39m: [35m26[39m,
+        [34mtitle[39m: [32m"[39m[32mtest[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8486
+        [34mid[39m: [35m27[39m,
+        [34mtitle[39m: [32m"[39m[32mtest5[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8485
+        [34mid[39m: [35m28[39m,
+        [34mtitle[39m: [32m"[39m[32mtest5[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#8484
+        [34mid[39m: [35m29[39m,
+        [34mtitle[39m: [32m"[39m[32mkh[39m[32m"[39m,
+        [34mstatus[39m: [32m"[39m[32mtodo[39m[32m"[39m,
+      },
+    ],
+  }

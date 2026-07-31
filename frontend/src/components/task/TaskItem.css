@@ -1,0 +1,142 @@
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-text-muted);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.task-item--in_progress {
+  border-left-color: var(--color-teal);
+}
+
+.task-item--done {
+  border-left-color: var(--color-success);
+}
+
+.task-item--done .task-item__title {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.task-item__content {
+  min-width: 0;
+}
+
+.task-item__title {
+  font-size: 14px;
+  margin: 0 0 4px;
+  color: var(--color-text);
+}
+
+.task-item__description {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.task-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.task-item__status {
+  background-color: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 12px;
+  padding: 6px 8px;
+}
+
+.task-item__delete {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-danger);
+  font-size: 12px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.task-item__delete:hover {
+  border-color: var(--color-danger);
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-text-muted);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.task-item--in_progress {
+  border-left-color: var(--color-teal);
+}
+
+.task-item--done {
+  border-left-color: var(--color-success);
+}
+
+.task-item--done .task-item__title {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.task-item__content {
+  min-width: 0;
+}
+
+.task-item__title {
+  font-size: 14px;
+  margin: 0 0 4px;
+  color: var(--color-text);
+}
+
+.task-item__description {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.task-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.task-item__status {
+  background-color: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 12px;
+  padding: 6px 8px;
+}
+
+.task-item__delete {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-danger);
+  font-size: 12px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.task-item__delete:hover {
+  border-color: var(--color-danger);
+}
