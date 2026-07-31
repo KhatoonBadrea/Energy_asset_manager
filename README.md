@@ -397,26 +397,25 @@ tasks
 
 # API Endpoints
 
-| Method    | Endpoint                               | Authentication | Description             |
-| --------- | -------------------------------------- | -------------- | ----------------------- |
-| POST      | `/api/register`                        | No             | Register new user       |
-| POST      | `/api/login`                           | No             | Login user              |
-| POST      | `/api/logout`                          | Yes            | Logout user             |
-| GET       | `/api/projects`                        | Yes            | Get user projects       |
-| POST      | `/api/projects`                        | Yes            | Create project          |
-| GET       | `/api/projects/{id}`                   | Yes            | Show project with tasks |
-| PUT/PATCH | `/api/projects/{id}`                   | Yes            | Update project          |
-| DELETE    | `/api/projects/{id}`                   | Yes            | Delete project          |
-| GET       | `/api/projects/{project}/tasks`        | Yes            | List project tasks      |
-| POST      | `/api/projects/{project}/tasks`        | Yes            | Create task             |
-| PUT/PATCH | `/api/projects/{project}/tasks/{task}` | Yes            | Update task             |
-| DELETE    | `/api/projects/{project}/tasks/{task}` | Yes            | Delete task             |
+---
 
-Protected routes require:
+# API Documentation
 
-```
-Authorization: Bearer <token>
-```
+Complete API documentation is available through Postman:
+
+🔗 [View Postman API Documentation](https://documenter.getpostman.com/view/42627461/2sBY4ToxcS)
+
+The documentation includes:
+
+- Authentication endpoints
+- Request parameters
+- Request bodies
+- Headers
+- Example responses
+- Available API routes
+
+All protected endpoints require:
+
 
 ---
 
