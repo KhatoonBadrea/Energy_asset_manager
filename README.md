@@ -1,58 +1,571 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Apollo Energy Asset Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A fullstack web application for managing and monitoring energy assets. Users can register, log in, create projects, and track tasks within each project — built as a Laravel REST API backend with a React + TypeScript frontend.
 
-## About Laravel
+Built for the Apollo Green Solutions Fullstack Developer assessment.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Layer       | Technology                        |
+| ----------- | --------------------------------- |
+| Backend     | Laravel 13 (PHP), Laravel Sanctum |
+| Frontend    | React 18, TypeScript, Vite        |
+| Database    | PostgreSQL                        |
+| HTTP Client | Axios                             |
+| Routing     | React Router DOM                  |
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Features
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- User registration, login, and logout using token-based authentication.
+- Users can create, view, update, and delete their own projects.
+- Users can manage tasks inside each project.
+- Task status tracking:
+  - `todo`
+  - `in_progress`
+  - `done`
+- Complete ownership isolation:
+  - Users can only access their own projects.
+  - Users can only manage tasks belonging to their projects.
+- Responsive dashboard with instant UI updates without full-page reloads.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+# Architecture and Design Decisions
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Backend Architecture
 
-```bash
-composer require laravel/boost --dev
+The backend follows a **domain-oriented architecture** instead of Laravel's default type-based organization.
 
-php artisan boost:install
+Each domain (`Auth`, `Project`, `Task`) contains its related controllers, requests, resources, services, and policies.
+
+Example structure:
+
+```text
+app/
+├── Enums/
+│   └── TaskStatus.php
+│
+├── Http/
+│   ├── Controllers/
+│   │   └── Api/
+│   │       ├── Auth/
+│   │       ├── Project/
+│   │       └── Task/
+│   │
+│   ├── Requests/
+│   │   ├── Auth/
+│   │   ├── Project/
+│   │   └── Task/
+│   │
+│   └── Resources/
+│       ├── Auth/
+│       ├── Project/
+│       └── Task/
+│
+├── Models/
+│   ├── User.php
+│   ├── Project.php
+│   └── Task.php
+│
+├── Policies/
+│   ├── Project/
+│   └── Task/
+│
+├── Services/
+│   ├── Auth/
+│   ├── Project/
+│   └── Task/
+│
+└── Support/
+    └── ServiceResult.php
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Service Layer Pattern
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+All business logic is isolated inside dedicated service classes:
 
-## Code of Conduct
+- `AuthService`
+- `ProjectService`
+- `TaskService`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Controllers are responsible only for:
 
-## Security Vulnerabilities
+- Receiving HTTP requests.
+- Calling services.
+- Returning formatted responses.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Benefits:
 
-## License
+- Thin controllers.
+- Reusable business logic.
+- Easier testing and maintenance.
+- Clear separation of responsibilities.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## ServiceResult Value Object
+
+All services return a unified response object:
+
+```php
+ServiceResult
+{
+    success,
+    data,
+    message,
+    status
+}
+```
+
+This provides a consistent contract between services and controllers.
+
+---
+
+## Form Requests Validation
+
+Validation logic is separated into dedicated Form Request classes.
+
+Examples:
+
+```
+StoreProjectRequest
+StoreTaskRequest
+LoginRequest
+RegisterRequest
+```
+
+Benefits:
+
+- Cleaner controllers.
+- Reusable validation rules.
+- Easier testing.
+
+---
+
+## API Resources
+
+All API responses are transformed using Laravel API Resources.
+
+Example:
+
+```
+ProjectResource
+TaskResource
+UserResource
+```
+
+Advantages:
+
+- Prevent exposing database structure directly.
+- Avoid leaking sensitive fields.
+- Maintain stable API responses.
+
+---
+
+## Authorization Using Policies
+
+Authorization rules are handled using:
+
+```
+ProjectPolicy
+TaskPolicy
+```
+
+Users can only:
+
+- View their own projects.
+- Update their own projects.
+- Delete their own projects.
+- Manage tasks belonging to their projects.
+
+Tasks inherit ownership through:
+
+```
+User
+ |
+ └── Projects
+        |
+        └── Tasks
+```
+
+---
+
+## Task Status Enum
+
+Task status uses a PHP backed enum:
+
+```php
+enum TaskStatus:string
+{
+    case Todo = 'todo';
+    case InProgress = 'in_progress';
+    case Done = 'done';
+}
+```
+
+This prevents invalid status values from reaching the database.
+
+The database column remains a normal string, allowing future status changes without database migrations.
+
+---
+
+## Database Relationships
+
+Relationship structure:
+
+```
+Users
+ |
+ └── Projects
+        |
+        └── Tasks
+```
+
+Features:
+
+- One user has many projects.
+- One project has many tasks.
+- Cascade deletion enabled.
+
+Deleting:
+
+```
+User
+ ↓
+Projects
+ ↓
+Tasks
+```
+
+Foreign keys are indexed for better query performance.
+
+---
+
+## Authentication Choice
+
+Laravel Sanctum was selected instead of Passport because:
+
+- This application is a single first-party SPA.
+- OAuth2 complexity is unnecessary.
+- Sanctum provides lightweight token authentication.
+
+---
+
+# Frontend Architecture
+
+The React application follows the same domain-oriented approach.
+
+Structure:
+
+```text
+src/
+├── components/
+│   ├── auth/
+│   ├── layout/
+│   ├── project/
+│   └── task/
+│
+├── context/
+│   └── AuthContext.tsx
+│
+├── pages/
+│   ├── LoginPage
+│   ├── RegisterPage
+│   ├── DashboardPage
+│   └── ProjectDetailsPage
+│
+├── routes/
+│   ├── AppRoutes
+│   └── ProtectedRoute
+│
+├── services/
+│   ├── api.ts
+│   ├── auth/
+│   ├── project/
+│   └── task/
+│
+└── types/
+```
+
+---
+
+## Axios Configuration
+
+A centralized Axios instance handles:
+
+- API base URL.
+- Authentication token injection.
+- Unauthorized responses.
+
+Features:
+
+- Automatically attaches Bearer token.
+- Automatically logs users out after token expiration.
+- Components never communicate with Axios directly.
+
+---
+
+## Authentication State
+
+React Context API is used instead of Redux.
+
+Reason:
+
+The application only needs to manage:
+
+```
+Current authenticated user
+```
+
+Context API provides:
+
+- Less complexity.
+- Smaller dependency footprint.
+- Simple global state management.
+
+---
+
+## Frontend Service Layer
+
+Each domain has its own API service:
+
+```
+authService
+projectService
+taskService
+```
+
+Components communicate with services instead of directly calling APIs.
+
+---
+
+## TypeScript Integration
+
+Frontend interfaces match backend API Resources.
+
+Example:
+
+```
+Backend Resource
+        |
+        ↓
+TypeScript Interface
+        |
+        ↓
+React Components
+```
+
+This provides compile-time type safety.
+
+---
+
+# Database Schema
+
+```text
+users
+├── id (PK)
+├── name
+├── email
+├── password
+└── timestamps
+
+
+projects
+├── id (PK)
+├── user_id (FK)
+├── name
+├── description
+└── timestamps
+
+
+tasks
+├── id (PK)
+├── project_id (FK)
+├── title
+├── description
+├── status
+└── timestamps
+```
+
+---
+
+# API Endpoints
+
+| Method    | Endpoint                               | Authentication | Description             |
+| --------- | -------------------------------------- | -------------- | ----------------------- |
+| POST      | `/api/register`                        | No             | Register new user       |
+| POST      | `/api/login`                           | No             | Login user              |
+| POST      | `/api/logout`                          | Yes            | Logout user             |
+| GET       | `/api/projects`                        | Yes            | Get user projects       |
+| POST      | `/api/projects`                        | Yes            | Create project          |
+| GET       | `/api/projects/{id}`                   | Yes            | Show project with tasks |
+| PUT/PATCH | `/api/projects/{id}`                   | Yes            | Update project          |
+| DELETE    | `/api/projects/{id}`                   | Yes            | Delete project          |
+| GET       | `/api/projects/{project}/tasks`        | Yes            | List project tasks      |
+| POST      | `/api/projects/{project}/tasks`        | Yes            | Create task             |
+| PUT/PATCH | `/api/projects/{project}/tasks/{task}` | Yes            | Update task             |
+| DELETE    | `/api/projects/{project}/tasks/{task}` | Yes            | Delete task             |
+
+Protected routes require:
+
+```
+Authorization: Bearer <token>
+```
+
+---
+
+# Installation Guide
+
+## Requirements
+
+- PHP 8.3+
+- Composer
+- Node.js 20+
+- npm
+- PostgreSQL 14+
+
+---
+
+# Backend Setup
+
+Clone repository:
+
+```bash
+git clone <repository-url>
+
+cd energy-asset-manager
+```
+
+Install dependencies:
+
+```bash
+composer install
+```
+
+Create environment file:
+
+```bash
+cp .env.example .env
+```
+
+Generate application key:
+
+```bash
+php artisan key:generate
+```
+
+Configure PostgreSQL:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=energy_asset_manager
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+Create database:
+
+```bash
+createdb energy_asset_manager
+```
+
+Install Sanctum and migrate:
+
+```bash
+php artisan install:api
+
+php artisan migrate:fresh --seed
+```
+
+Run backend:
+
+```bash
+php artisan serve
+```
+
+Backend URL:
+
+```
+http://localhost:8000/api
+```
+
+---
+
+# Frontend Setup
+
+Move to frontend:
+
+```bash
+cd frontend
+```
+
+Install packages:
+
+```bash
+npm install
+```
+
+Create:
+
+```
+.env
+```
+
+Add:
+
+```env
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
+Run:
+
+```bash
+npm run dev
+```
+
+Frontend URL:
+
+```
+http://localhost:5173
+```
+
+---
+
+# Testing The Application
+
+1. Open:
+
+```
+http://localhost:5173/register
+```
+
+2. Create an account.
+
+3. Create a project.
+
+4. Add tasks.
+
+5. Update and delete tasks.
+
+---
+
+# Future Improvements
+
+- Password reset functionality.
+- Pagination for projects and tasks.
+- Automated test suite.
+- More advanced filtering and searching.
+
+---
+
+# Author
+
+**Khatoon Badrea**
