@@ -8,9 +8,7 @@ enum TaskStatus: string
     case InProgress = 'in_progress';
     case Done = 'done';
 
-    /**
-     * تسمية قابلة للعرض بالواجهة - بتخلي الـ React ياخد قيمة جاهزة بدل ما يترجم الـ value يدوياً.
-     */
+   
     public function label(): string
     {
         return match ($this) {
